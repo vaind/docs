@@ -124,6 +124,9 @@ Now that you have a valid _.template.config/template.json_ file, your template i
 * **On Windows**: `dotnet new install .\`
 * **On Linux or macOS**: `dotnet new install ./`
 
+> [!IMPORTANT]
+> If you're using .NET 6, the command is `dotnet new --install`.
+
 This command outputs the list of templates installed, which should include yours.
 
 ```console
@@ -206,6 +209,9 @@ In your terminal, navigate to the  _extensions_ folder and run the following com
 
 * **On Windows**: `dotnet new uninstall .\`
 * **On Linux or macOS**: `dotnet new uninstall ./`
+
+> [!IMPORTANT]
+> If you're using .NET 6, the command is `dotnet new --uninstall`.
 
 This command outputs a list of the templates that were uninstalled, which should include yours.
 

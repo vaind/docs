@@ -34,7 +34,10 @@ In this part of the series you'll learn how to:
 
 A template package is one or more templates packaged into a NuGet package. When you install or uninstall a template package, all templates contained in the package are added or removed, respectively. The previous parts of this tutorial series only worked with individual templates. To share a non-packed template, you have to copy the template folder and install via that folder. Because a template package can have more than one template in it, and is a single file, sharing is easier.
 
-Template packages are represented by a NuGet package (_.nupkg_) file. And, like any NuGet package, you can upload the template package to a NuGet feed. The `dotnet new --install` command supports installing template package from a NuGet package feed. Additionally, you can install a template package from a _.nupkg_ file directly.
+Template packages are represented by a NuGet package (_.nupkg_) file. And, like any NuGet package, you can upload the template package to a NuGet feed. The `dotnet new install` command supports installing template package from a NuGet package feed. Additionally, you can install a template package from a _.nupkg_ file directly.
+
+> [!IMPORTANT]
+> If you're using .NET 6, the command is `dotnet new --install`.
 
 Normally you use a C# project file to compile code and produce a binary. However, the project can also be used to generate a template package. By changing the settings of the _.csproj_, you can prevent it from compiling any code and instead include all the assets of your templates as resources. When this project is built, it produces a template package NuGet package.
 
@@ -96,7 +99,9 @@ The settings under `<PropertyGroup>` in the XML snippet are broken into three gr
 The first group deals with properties required for a NuGet package. The three `<Package*>` settings have to do with the NuGet package properties to identify your package on a NuGet feed. Specifically the `<PackageId>` value is used to uninstall the template package with a single name instead of a directory path. It can also be used to install the template package from a NuGet feed. The remaining settings, such as `<Title>` and `<PackageTags>`, have to do with metadata displayed on the NuGet feed. For more information about NuGet settings, see [NuGet and MSBuild properties](/nuget/reference/msbuild-targets).
 
 > [!NOTE]
-> To ensure that the template package appears in `dotnet new --search` results, set `<PackageType>` to `Template`.
+> To ensure that the template package appears in `dotnet new search` results, set `<PackageType>` to `Template`.
+>
+> If you're using .NET 6, the command is `dotnet new --search`.
 
 In the second group, the `<TargetFramework>` setting ensures that MSBuild executes properly when you run the pack command to compile and pack the project.
 
@@ -142,6 +147,9 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 
 Next, install the template package with the `dotnet new install` command.
 
+> [!IMPORTANT]
+> If you're using .NET 6, the command is `dotnet new --install`.
+
 ```console
 C:\working> dotnet new install C:\working\bin\Debug\AdatumCorporation.Utility.Templates.1.0.0.nupkg
 The following template packages will be installed:
@@ -160,6 +168,9 @@ If you uploaded the NuGet package to a NuGet feed, you can use the `dotnet new i
 
 No matter how you installed the template package, either with the _.nupkg_ file directly or by NuGet feed, removing a template package is the same. Use the `<PackageId>` of the template you want to uninstall. You can get a list of templates that are installed by running the `dotnet new uninstall` command.
 
+> [!IMPORTANT]
+> If you're using .NET 6, the command is `dotnet new --uninstall`.
+
 ```dotnetcli
 C:\working> dotnet new uninstall
 Currently installed items:
@@ -177,7 +188,7 @@ Currently installed items:
       dotnet new uninstall AdatumCorporation.Utility.Templates
 ```
 
-Run `dotnet new uninstall  AdatumCorporation.Utility.Templates` to uninstall the template package. The command will output information about what template packages were uninstalled.
+Run `dotnet new uninstall AdatumCorporation.Utility.Templates` to uninstall the template package. The command will output information about what template packages were uninstalled.
 
 Congratulations! You've installed and uninstalled a template package.
 

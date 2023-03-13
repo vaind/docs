@@ -129,6 +129,9 @@ Now that you have a valid _.template.config/template.json_ file, your template i
 dotnet new install .\
 ```
 
+> [!IMPORTANT]
+> If you're using .NET 6, the command is `dotnet new --install`.
+
 This command outputs a list of the installed templates, which should include yours.
 
 ```console
